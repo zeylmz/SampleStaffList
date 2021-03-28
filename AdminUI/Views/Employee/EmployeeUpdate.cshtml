@@ -1,0 +1,97 @@
+﻿@model EmployeeListViewModel
+
+@{
+    ViewBag.Title = "Personel Güncelle";
+    Layout = "_Layout";
+}
+
+<form class="needs-validation" asp-controller="Employee" asp-action="EmployeeUpdate" method="post">
+    <legend>Çalışan Bilgileri</legend>
+    <div class="mb-3">
+        <label for="Id" class="form-label">Çalışan ID'si</label>
+        <input asp-for="employeeDetail.Id" class="form-control" id="Id" value="@Model.GetByIdEmployee.Data.Id" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="UserId" class="form-label">Çalışan Kullanıcı ID'si</label>
+        <input asp-for="employeeDetail.UserId" class="form-control" id="UserId" value="@Model.GetByIdEmployee.Data.UserId" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="ManagerId" class="form-label">Çalışan Yönetici ID'si</label>
+        <input asp-for="employeeDetail.ManagerId" class="form-control" id="ManagerId" value="@Model.GetByIdEmployee.Data.ManagerId">
+    </div>
+    <div class="mb-3">
+        <label for="DepartmentId" class="form-label">Departman</label>
+        <select asp-for="employeeDetail.DepartmentId" class="form-select form-control" id="DepartmentId" aria-label="Departman Seçiniz">
+            @foreach (var department in Model.Depatments.Data)
+            {
+                if (department.Id == Model.GetByIdEmployee.Data.DepartmentId)
+                {
+                    <option value="@department.Id" selected>@department.Name</option>
+                }
+                else
+                {
+                    <option value="@department.Id">@department.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="FirstName" class="form-label">Çalışan Adı</label>
+        <input asp-for="employeeDetail.FirstName" class="form-control" id="FirstName" value="@Model.GetByIdEmployee.Data.FirstName" required>
+        <div class="valid-feedback">
+            İyi görünüyor.
+        </div>
+        <div class="invalid-feedback">
+            Bir İsim girmelisin
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="LastName" class="form-label">Çalışan Soyadı</label>
+        <input asp-for="employeeDetail.LastName" class="form-control" id="LastName" value="@Model.GetByIdEmployee.Data.LastName" required>
+        <div class="valid-feedback">
+            İyi görünüyor.
+        </div>
+        <div class="invalid-feedback">
+            Bir Soyad girmelisin
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="Title" class="form-label">Çalışanın Ünvanı</label>
+        <input asp-for="employeeDetail.Title" class="form-control" id="Title" value="@Model.GetByIdEmployee.Data.Title" required>
+        <div class="valid-feedback">
+            İyi görünüyor.
+        </div>
+        <div class="invalid-feedback">
+            Bir Ünvan girmelisin
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="PhoneNumber" class="form-label">Çalışanın Telefon Numarası</label>
+        <input asp-for="employeeDetail.PhoneNumber" class="form-control" id="PhoneNumber" value="@Model.GetByIdEmployee.Data.PhoneNumber" required>
+        <div class="valid-feedback">
+            İyi görünüyor.
+        </div>
+        <div class="invalid-feedback">
+            Bir Telefon Numarası girmelisin
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="DateOfBirth" class="form-label">Çalışanın Doğum Tarihi</label>
+        <input asp-for="employeeDetail.DateOfBirth" class="form-control" type="text" id="datepicker" value="@Model.GetByIdEmployee.Data.DateOfBirth.Date.ToString("dd-MM-yyyy")">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+@section Scripts{
+    <script src="~/jqueryUI/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: 'dd-mm-yy',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}

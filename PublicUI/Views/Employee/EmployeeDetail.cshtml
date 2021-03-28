@@ -1,0 +1,58 @@
+﻿@model EmployeeListViewModel
+
+
+
+
+
+<div class="row">
+    <div class="col-3">
+        <div class="owl-carousel owl-theme">
+            <div class="item">
+                <img src="~/Images/1ef4082b-6d30-43ae-b6fb-ed979ea0d3a7_25_3_2021_17_56.jpg" />
+            </div>
+            <div class="item">
+                <img src="~/Images/303bd098-a089-4219-b341-792927a5cfda_25_3_2021_18_2.jpg" />
+            </div>
+            <div class="item">
+                <img src="~/Images/5753b321-43d1-4272-995c-f117c6d75fcc_25_3_2021_18_8.jpg" />
+            </div>           
+        </div>
+    </div>
+    <div class="col-9">
+        <h3>@Model.GetByIdEmployee.Data.FirstName @Model.GetByIdEmployee.Data.LastName</h3>
+        <p><span class="fw-bold">Ünvanı</span> @Model.GetByIdEmployee.Data.Title</p>
+        <p><span class="fw-bold">Telefon Numarası</span> @Model.GetByIdEmployee.Data.PhoneNumber</p>
+        <p><span class="fw-bold">Doğum Tarihi</span> @Model.GetByIdEmployee.Data.DateOfBirth</p>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/owlcarousel/jquery.min.js"></script>
+    <script src="~/owlcarousel/owl.carousel.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 1,
+                        nav: false
+                    },
+                    1000: {
+                        items: 1,
+                        nav: true,
+                        loop: false,
+                        margin: 20
+                    }
+                }
+            })
+        })
+
+    </script>
+}
+

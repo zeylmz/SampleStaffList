@@ -1,0 +1,40 @@
+﻿@model EmployeeListViewModel
+
+@{ 
+    ViewBag.Title = "Personel Listesi";
+    Layout = "_Layout";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">KullanıcıId</th>
+            <th scope="col">YöneticiId</th>
+            <th scope="col">Ünvanı</th>
+            <th scope="col">Adı</th>
+            <th scope="col">Soyadı</th>
+            <th scope="col">Telefon Numarası</th>
+            <th scope="col">Doğum Tarihi</th>
+            <th scope="col">#</th>
+            <th scope="col">#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model.Employees.Data)
+	{
+        <tr>
+            <td>@employee.Id</td>
+            <td>@employee.UserId</td>
+            <td>@employee.ManagerId</td>
+            <td>@employee.Title</td>
+            <td>@employee.FirstName</td>
+            <td>@employee.LastName</td>
+            <td>@employee.PhoneNumber</td>
+            <td>@employee.DateOfBirth</td>
+            <td><a href="/employee/employeeupdate?employeeId=@employee.Id" type="button" class="btn btn-warning">Düzenle</a></td>
+            <td><a href="#" type="button" class="btn btn-danger">Çalışanı Sil</a></td>
+        </tr>
+	}        
+    </tbody>
+</table>

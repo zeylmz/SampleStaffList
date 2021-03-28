@@ -1,0 +1,27 @@
+﻿@model DepartmentListViewModel
+
+
+
+<h1>Departman Listesi</h1>
+<div class="list-group">
+
+    @{
+        var css = "list-group-item";
+        if (Model.CurrentDepartment == 0)
+        {
+            css += " active";
+        }
+        <a href="/employee/index?departmentId=0" class="@css">Tüm Departmanlar</a>
+    }
+
+    @foreach (var department in Model.Departments.Data)
+    {
+        var css1 = "list-group-item";
+        if (department.Id == Model.CurrentDepartment)
+        {
+            css1 += " active";
+        }
+        <a href="/employee/index?departmentId=@department.Id" class="@css1">@department.Name</a>
+    }
+</div>
+
